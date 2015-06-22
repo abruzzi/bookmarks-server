@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'java'
+
+
+repositories {
+    jcenter(){
+        url "http://jcenter.bintray.com/"
+    }
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        flatDir {
+            dirs 'lib'
+        }
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
+    }
+}
+
+jar {
+    baseName = project.name
+    version = '0.1.0'
+    exclude('application.properties')
+    exclude('gradle.properties')
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    compile("org.apache.commons:commons-lang3:3.2.1")
+    compile("com.google.guava:guava:16.0.1")
+    compile("org.yaml:snakeyaml:1.13")
+    compile("mysql:mysql-connector-java:5.1.28")
+
+    testCompile("junit:junit:4.11")
+    testCompile("org.springframework:spring-test:4.0.6.RELEASE")
+    testCompile("org.hsqldb:hsqldb:2.0.0")
+}
