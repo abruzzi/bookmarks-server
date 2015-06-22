@@ -20,6 +20,14 @@ public class FeedsController {
     @Autowired
     private UserService userService;
 
+    public void setFeedsService(FeedsService feedsService) {
+        this.feedsService = feedsService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping(value="/feeds", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Feed> allFeeds() {
@@ -30,7 +38,6 @@ public class FeedsController {
     @RequestMapping(value="/fav-feeds/{userId}", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Feed> favFeeds(@PathVariable("userId") Long userId) {
-        System.err.println(userId);
         return userService.favoriteFeeds(userId);
     }
 }
