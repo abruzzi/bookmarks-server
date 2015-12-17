@@ -1,6 +1,7 @@
 spring:
    application.name: bookmarks
    profiles.active: development
+   jackson.serialization.write-dates-as-timestamps: false
    main:
      web-environment: true
 

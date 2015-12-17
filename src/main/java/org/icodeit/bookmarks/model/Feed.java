@@ -1,5 +1,6 @@
 package org.icodeit.bookmarks.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
@@ -16,6 +17,10 @@ public class Feed {
 
     private String url;
     private String title;
+    private String author;
+    private String summary;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date publishDate;
 
     public User getUser() {
@@ -25,6 +30,22 @@ public class Feed {
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     public Long getId() {
         return id;
