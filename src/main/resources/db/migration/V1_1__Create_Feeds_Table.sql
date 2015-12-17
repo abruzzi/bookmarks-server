@@ -3,6 +3,8 @@ create table feeds
    id int not null auto_increment,
    title varchar(64),
    url varchar(128),
+   summary text,
+   author varchar(64),
    publish_date datetime DEFAULT CURRENT_TIMESTAMP,
 
    create_time          datetime DEFAULT CURRENT_TIMESTAMP,

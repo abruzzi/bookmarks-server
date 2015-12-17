@@ -4,6 +4,10 @@ spring:
    main:
      web-environment: true
 
+security:
+  require-ssl: true
+  sessions: stateless
+
 ---
 
 spring:
@@ -13,7 +17,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bookmarks
     username: root
-    password:
+    password: password
 
   jpa:
      show-sql: true

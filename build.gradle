@@ -14,6 +14,14 @@ repositories {
     }
 }
 
+flyway {
+    url = 'jdbc:mysql://localhost:3306'
+    user = 'root'
+    password = 'password'
+    schemas = ['bookmarks']
+    locations = ['classpath:db.migration']
+}
+
 buildscript {
     repositories {
         jcenter()
