@@ -4,6 +4,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'java'
 
+apply plugin: "pmd"
 
 repositories {
     jcenter(){
@@ -20,6 +21,33 @@ flyway {
     password = 'password'
     schemas = ['bookmarks']
     locations = ['classpath:db.migration']
+}
+
+pmd {
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/pmd")
+    ruleSets = [
+        "java-basic",
+        "java-braces",
+        "java-strings", 
+        "java-design", 
+        "java-unusedcode"
+    ]
+}
+
+// add CPD to check
+check << {
+  File outDir = new File("$project.buildDir/reports/pmd/")
+  outDir.mkdirs()
+  ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
+    classpath: configurations.pmd.asPath)
+  ant.cpd(minimumTokenCount: '100', format: 'xml',
+    outputFile: new File(outDir , 'cpd.xml')) {
+    fileset(dir: "src/main/java") {
+      include(name: '**/*.java')
+    }
+  }
 }
 
 buildscript {
