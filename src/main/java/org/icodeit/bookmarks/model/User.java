@@ -14,10 +14,6 @@ public class User {
     private String name;
     private String email;
 
-    public List<Feed> getFavoriteFeeds() {
-        return favoriteFeeds;
-    }
-
     @JsonIgnore
     @OneToMany
     @JoinTable(
@@ -25,6 +21,10 @@ public class User {
             joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
             inverseJoinColumns={@JoinColumn(name="feed_id", referencedColumnName="id")})
     private List<Feed> favoriteFeeds;
+
+    public List<Feed> getFavoriteFeeds() {
+        return favoriteFeeds;
+    }
 
     public Long getId() {
         return id;

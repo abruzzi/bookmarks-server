@@ -20,16 +20,16 @@ public class Feed {
     private String author;
     private String summary;
 
+    @JsonIgnore
+    @ManyToOne
+    private User user;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date publishDate;
 
     public User getUser() {
         return user;
     }
-
-    @JsonIgnore
-    @ManyToOne
-    private User user;
 
     public String getAuthor() {
         return author;
