@@ -1,6 +1,5 @@
 build/
 .gradle/
-gradle/
 out/
 bookmarks-server.iml
 bookmarks-server.ipr
