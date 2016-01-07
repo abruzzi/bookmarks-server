@@ -16,11 +16,16 @@ repositories {
 }
 
 flyway {
-    url = 'jdbc:mysql://localhost:3306'
-    user = 'root'
-    password = 'password'
-    schemas = ['bookmarks']
-    locations = ['classpath:db.migration']
+    if(project.env == 'development') {
+        url = 'jdbc:mysql://localhost:3306'
+        user = 'root'
+        password = 'password'
+        schemas = ['bookmarks']
+        locations = ['classpath:db.migration']
+    } else {
+        url = System.getenv('DATABASE_URL')
+        locations = ['classpath:db.migration']
+    }
 }
 
 pmd {
