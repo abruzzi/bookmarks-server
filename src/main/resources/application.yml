@@ -15,7 +15,6 @@ spring:
   profiles: staging
 
   datasource:
-    platform: postgres
     driverClassName: org.postgresql.Driver
     url: jdbc:${DATABASE_URL}
     maxActive: 10
@@ -24,6 +23,8 @@ spring:
     initialSize: 5
     removeAbandoned: true
 
+  jpa:
+    database_platform: org.hibernate.dialect.PostgreSQLDialect
 ---
 
 spring:
