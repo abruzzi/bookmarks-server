@@ -15,8 +15,9 @@ spring:
   profiles: staging
 
   datasource:
+    platform: postgres
     driverClassName: org.postgresql.Driver
-    url: ${DATABASE_URL}
+    url: jdbc:${DATABASE_URL}
     maxActive: 10
     maxIdle: 5
     minIdle: 2
