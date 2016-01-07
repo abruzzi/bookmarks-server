@@ -13,7 +13,6 @@ public class UserService {
 
     public Iterable<Feed> favoriteFeeds(Long userId) {
         User user = userRepository.findOne(userId);
-        System.err.println(user.getEmail());
         return user.getFavoriteFeeds();
     }
 }

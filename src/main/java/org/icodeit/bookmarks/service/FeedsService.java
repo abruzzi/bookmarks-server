@@ -13,4 +13,8 @@ public class FeedsService {
     public Iterable<Feed> allFeeds() {
         return feedRepository.findAll();
     }
+
+    public Feed saveFeed(Feed feed) {
+        return feedRepository.save(feed);
+    }
 }

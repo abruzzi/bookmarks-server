@@ -3,16 +3,14 @@ package org.icodeit.bookmarks.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="feeds")
 public class Feed {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String url;
@@ -26,6 +24,11 @@ public class Feed {
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date publishDate;
+
+    @PrePersist
+    protected void onCreate() {
+        publishDate = new Date();
+    }
 
     public User getUser() {
         return user;
