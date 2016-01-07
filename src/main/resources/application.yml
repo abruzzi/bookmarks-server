@@ -16,7 +16,9 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:${DATABASE_URL}
+    url: ${JDBC_DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASS}
     maxActive: 10
     maxIdle: 5
     minIdle: 2
@@ -25,6 +27,9 @@ spring:
 
   jpa:
     database_platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
 ---
 
 spring:
