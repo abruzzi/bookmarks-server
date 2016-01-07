@@ -36,6 +36,10 @@ pmd {
     ]
 }
 
+task stage {
+    dependsOn build
+}
+
 // add CPD to check
 check << {
   File outDir = new File("$project.buildDir/reports/pmd/")
