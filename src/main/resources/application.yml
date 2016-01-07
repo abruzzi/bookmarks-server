@@ -12,6 +12,20 @@ security:
 ---
 
 spring:
+  profiles: staging
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${JDBC_DATABASE_URL}
+    maxActive: 10
+    maxIdle: 5
+    minIdle: 2
+    initialSize: 5
+    removeAbandoned: true
+
+---
+
+spring:
   profiles: development
 
   datasource:

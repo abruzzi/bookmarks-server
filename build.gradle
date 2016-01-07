@@ -78,6 +78,7 @@ dependencies {
     compile("com.google.guava:guava:16.0.1")
     compile("org.yaml:snakeyaml:1.13")
     compile("mysql:mysql-connector-java:5.1.28")
+    compile("org.postgresql:postgresql:9.4-1201-jdbc4")
 
     testCompile("junit:junit:4.11")
     testCompile 'org.hamcrest:hamcrest-all:1.3'
