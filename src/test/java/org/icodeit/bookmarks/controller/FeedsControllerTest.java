@@ -6,13 +6,12 @@ import org.icodeit.bookmarks.service.FeedsService;
 import org.icodeit.bookmarks.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
@@ -21,6 +20,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -39,6 +39,21 @@ public class FeedsControllerTest {
         feedsController.setUserService(userService);
 
         mockMvc = standaloneSetup(feedsController).build();
+    }
+
+    @Test
+    public void shouldAddNewFeed() throws Exception{
+        Feed feed = prepareAFeed();
+        when(feedsService.saveFeed(any(Feed.class))).thenReturn(feed);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String content = mapper.writeValueAsString(feed);
+
+        mockMvc.perform(post("/api/feeds")
+                .contentType(MediaType.APPLICATION_JSON).content(content))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.title", is("如何持久化你的项目经历")));
     }
 
     @Test
@@ -62,6 +77,12 @@ public class FeedsControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title", is("使用underscore.js构建前端应用")))
                 .andExpect(jsonPath("$[0].publishDate", is(notNullValue())));
+    }
+
+    private Feed prepareAFeed() throws IOException {
+        URL resource = getClass().getResource("/mocks/feed.json");
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(resource, Feed.class);
     }
 
     private Feed[] prepareFeeds() throws IOException {
