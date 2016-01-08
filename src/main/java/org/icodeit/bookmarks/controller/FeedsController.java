@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://bookmarks-frontend.s3-website-us-west-2.amazonaws.com/")
+@CrossOrigin(origins = "http://bookmarks-frontend.s3-website-us-west-2.amazonaws.com")
 public class FeedsController {
 
     @Autowired
