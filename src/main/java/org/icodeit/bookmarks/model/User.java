@@ -3,6 +3,7 @@ package org.icodeit.bookmarks.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class User {
             name="user_favorite_feed",
             joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
             inverseJoinColumns={@JoinColumn(name="feed_id", referencedColumnName="id")})
-    private List<Feed> favoriteFeeds;
+    private List<Feed> favoriteFeeds = new ArrayList<>();
 
     public List<Feed> getFavoriteFeeds() {
         return favoriteFeeds;

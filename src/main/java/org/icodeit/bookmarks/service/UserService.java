@@ -6,6 +6,8 @@ import org.icodeit.bookmarks.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class UserService {
     @Autowired
@@ -13,6 +15,11 @@ public class UserService {
 
     public Iterable<Feed> favoriteFeeds(Long userId) {
         User user = userRepository.findOne(userId);
-        return user.getFavoriteFeeds();
+
+        if(user != null) {
+            return user.getFavoriteFeeds();
+        }
+
+        return new ArrayList<>();
     }
 }
