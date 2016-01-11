@@ -19,11 +19,6 @@ spring:
     url: ${JDBC_DATABASE_URL}
     username: ${DATABASE_USER}
     password: ${DATABASE_PASS}
-    maxActive: 10
-    maxIdle: 5
-    minIdle: 2
-    initialSize: 5
-    removeAbandoned: true
 
   jpa:
     database_platform: org.hibernate.dialect.PostgreSQLDialect

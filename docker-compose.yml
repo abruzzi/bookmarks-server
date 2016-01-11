@@ -1,0 +1,24 @@
+app:
+  build: .
+  links:
+    - db:postgres
+  ports:
+    - 8000:8000
+  volumes:
+    - .:/app
+  working_dir: /app
+  entrypoint: /app/start.sh
+  environment:
+    ARTIFECT_SERVER: localhost:9999
+    JDBC_DATABASE_URL: jdbc:postgresql://postgres:5432/bookmarks
+    DATABASE_USER: bookmarks-user
+    DATABASE_PASS: bookmarks-password
+
+db:
+  image: postgres:9.3
+  ports:
+    - 5432:5432
+  environment:
+    POSTGRES_DB: bookmarks
+    POSTGRES_USER: bookmarks-user
+    POSTGRES_PASSWORD: bookmarks-password
