@@ -2,8 +2,12 @@ spring:
    application.name: bookmarks
    profiles.active: development
    jackson.serialization.write-dates-as-timestamps: false
+   datasource:
+     testOnBorrow: true
+     validationQuery: SELECT 1
    main:
      web-environment: true
+
 
 security:
   require-ssl: true
@@ -17,7 +21,6 @@ management:
 endpoints:
   health:
     enabled: false
-
 
 ---
 
