@@ -9,6 +9,16 @@ security:
   require-ssl: true
   sessions: stateless
 
+management:
+  port: 8081
+  address: 127.0.0.1
+  context-path: /actuator
+
+endpoints:
+  health:
+    enabled: false
+
+
 ---
 
 spring:
