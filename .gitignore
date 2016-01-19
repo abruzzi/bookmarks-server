@@ -5,3 +5,4 @@ bookmarks-server.iml
 bookmarks-server.ipr
 bookmarks-server.iws
 keystore.p12
+temp/
